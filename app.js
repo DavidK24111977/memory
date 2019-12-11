@@ -4,32 +4,35 @@ var cards;
 var inner;
 var r;
 for(var i=0; i<16; i++){
-    console.log("i: "+i);
-    console.log("numbers length: "+numbers.length);
+
     r=Math.floor(Math.random()*numbers.length);
-    console.log("r: "+r);
+
     cards=document.createElement("div");
-    inner=document.createElement("inner");
+    inner=document.createElement("div");
     cards.className="cards";
     inner.className="inner";
+    inner.className+=" hidden";
     container.appendChild(cards);
     cards.appendChild(inner);
     inner.innerHTML= numbers[r];
 
     numbers.splice(r,1);
-    console.log("numbers after: "+numbers);
+
 
 }
 var count=1;
 var check;
 var previous;
-var checkInner=document.getElementsByClassName("inner");
+var checkInner=document.getElementsByClassName("cards");
+//console.log(checkInner);
 function reveal(){
     for(var i = 0; i<checkInner.length; i++){
         checkInner[i].onclick=function(){
-            check=this.innerHTML;
+            check=this.firstChild.innerHTML;
+            console.log(check);
             if(count==1){
-
+                //console.log(this.childNodes.classList);
+                this.firstChild.classList.toggle("hidden");
                 previous=check;
                 count++;
             } else{
